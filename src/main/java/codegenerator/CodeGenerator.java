@@ -7,6 +7,8 @@ import semantic.symbol.Symbol;
 import semantic.symbol.SymbolTable;
 import semantic.symbol.SymbolType;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Stack;
 
 /**
@@ -301,36 +303,44 @@ public class CodeGenerator {
 
     }
 
-    public void add() {
+    public List<Address> commonFunc(String what){
         Address temp = new Address(memory.getTemp(), varType.Int);
         Address s2 = ss.pop();
         Address s1 = ss.pop();
+        List<Address> addresses = new ArrayList<Address>();
+        addresses.add(temp);
+        addresses.add(s1);
+        addresses.add(s2);
 
         if (s1.varType != varType.Int || s2.varType != varType.Int) {
-            ErrorHandler.printError("In add two operands must be integer");
+            ErrorHandler.printError("In " + what +" two operands must be integer");
         }
+        return addresses;
+    }
+
+    public void add() {
+        List<Address> addresses =commonFunc("add");
+        Address temp = addresses.get(0);
+        Address s1 = addresses.get(1);
+        Address s2 = addresses.get(2);
         memory.add3AddressCode(Operation.ADD, s1, s2, temp);
         ss.push(temp);
     }
 
     public void sub() {
-        Address temp = new Address(memory.getTemp(), varType.Int);
-        Address s2 = ss.pop();
-        Address s1 = ss.pop();
-        if (s1.varType != varType.Int || s2.varType != varType.Int) {
-            ErrorHandler.printError("In sub two operands must be integer");
-        }
+        List<Address> addresses =commonFunc("sub");
+        Address temp = addresses.get(0);
+        Address s1 = addresses.get(1);
+        Address s2 = addresses.get(2);
         memory.add3AddressCode(Operation.SUB, s1, s2, temp);
         ss.push(temp);
     }
 
     public void mult() {
-        Address temp = new Address(memory.getTemp(), varType.Int);
-        Address s2 = ss.pop();
-        Address s1 = ss.pop();
-        if (s1.varType != varType.Int || s2.varType != varType.Int) {
-            ErrorHandler.printError("In mult two operands must be integer");
-        }
+        List<Address> addresses =commonFunc("mult");
+        Address temp = addresses.get(0);
+        Address s1 = addresses.get(1);
+        Address s2 = addresses.get(2);
         memory.add3AddressCode(Operation.MULT, s1, s2, temp);
 //        memory.saveMemory();
         ss.push(temp);
