@@ -20,14 +20,20 @@ public class Memory {
         lastTempIndex = stratTempMemoryAddress;
         lastDataAddress = stratDataMemoryAddress;
     }
+    public void addLastTemp(){lastTempIndex += tempSize;}
+    public int getLastTemp(){return lastTempIndex - tempSize;}
+
+    public void addLastAddress(){lastDataAddress += dataSize;}
+    public int getLastAddress(){return lastDataAddress-dataSize;}
 
     public int getTemp() {
-        lastTempIndex += tempSize;
-        return lastTempIndex - tempSize;
+        addLastTemp();
+        return getLastTemp();
     }
+
     public  int getDateAddress(){
-        lastDataAddress += dataSize;
-        return lastDataAddress-dataSize;
+        addLastAddress();
+        return getLastAddress();
     }
     public int saveMemory() {
         codeBlock.add(new _3AddressCode());
