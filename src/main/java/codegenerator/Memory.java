@@ -7,18 +7,19 @@ import java.util.List;
  * Created by mohammad hosein on 6/27/2015.
  */
 public class Memory {
-    private List<_3AddressCode> codeBlock;
-    private int lastTempIndex;
-    private int lastDataAddress;
-    private final int stratTempMemoryAddress = 500;
-    private final int stratDataMemoryAddress = 200;
+    private static List<_3AddressCode> codeBlock;
+    private static int lastTempIndex;
+    private static int lastDataAddress;
+    private static final int stratTempMemoryAddress = 500;
+    private static final int stratDataMemoryAddress = 200;
     private final int dataSize = 4;
     private final int tempSize = 4;
 
-    public Memory() {
+    public static Memory create(){
         codeBlock = new ArrayList<_3AddressCode>();
         lastTempIndex = stratTempMemoryAddress;
         lastDataAddress = stratDataMemoryAddress;
+        return new Memory();
     }
     public void addLastTemp(){lastTempIndex += tempSize;}
     public int getLastTemp(){return lastTempIndex - tempSize;}
