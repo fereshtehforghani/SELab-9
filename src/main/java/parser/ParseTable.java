@@ -25,6 +25,7 @@ public class ParseTable {
                     nonTerminals.put(i, NonTerminal.valueOf(temp));
                 }catch (Exception e){
 //                    temp = temp;
+                    e.printStackTrace();
                 }
             }
             else {
