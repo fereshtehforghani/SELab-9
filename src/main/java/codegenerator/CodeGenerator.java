@@ -89,10 +89,12 @@ public class CodeGenerator {
                 print();
                 break;
             case 19:
-                equal();
+                Compare operator = new Equal();
+                operator.compare(memory, ss);
                 break;
             case 20:
-                less_than();
+                Compare operator2 = new Less();
+                operator2.compare(memory, ss);
                 break;
             case 21:
                 and();
@@ -365,28 +367,6 @@ public class CodeGenerator {
 
     public void print() {
         memory.add3AddressCode(Operation.PRINT, ss.pop(), null, null);
-    }
-
-    public void equal() {
-        Address temp = new Address(memory.getTemp(), varType.Bool);
-        Address s2 = ss.pop();
-        Address s1 = ss.pop();
-        if (s1.varType != s2.varType) {
-            ErrorHandler.printError("The type of operands in equal operator is different");
-        }
-        memory.add3AddressCode(Operation.EQ, s1, s2, temp);
-        ss.push(temp);
-    }
-
-    public void less_than() {
-        Address temp = new Address(memory.getTemp(), varType.Bool);
-        Address s2 = ss.pop();
-        Address s1 = ss.pop();
-        if (s1.varType != varType.Int || s2.varType != varType.Int) {
-            ErrorHandler.printError("The type of operands in less than operator is different");
-        }
-        memory.add3AddressCode(Operation.LT, s1, s2, temp);
-        ss.push(temp);
     }
 
     public void and() {
