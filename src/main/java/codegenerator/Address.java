@@ -4,9 +4,9 @@ package codegenerator;
  * Created by mohammad hosein on 6/28/2015.
  */
 public class Address {
-    public int num;
-    public TypeAddress Type;
-    public varType varType;
+    private int num;
+    private TypeAddress Type;
+    private varType varType;
 
     public int getNum() {
         return num;
