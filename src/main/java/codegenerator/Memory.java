@@ -17,8 +17,6 @@ public class Memory {
 
     public static Memory create(){
         codeBlock = new ArrayList<_3AddressCode>();
-        lastTempIndex = stratTempMemoryAddress;
-        lastDataAddress = stratDataMemoryAddress;
         return new Memory();
     }
     public void addLastTemp(){lastTempIndex += tempSize;}
