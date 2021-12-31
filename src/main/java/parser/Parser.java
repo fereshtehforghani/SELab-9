@@ -47,7 +47,7 @@ public class Parser {
     Token lookAhead = lexicalAnalyzer.getNextToken();
     boolean finish = false;
     Action currentAction;
-    while (!finish) {
+    loop: while (!finish) {
       try {
         Log.print(/*"lookahead : "+*/ lookAhead.toString() + "\t" + parsStack.peek());
 //                Log.print("state : "+ parsStack.peek());
@@ -79,8 +79,8 @@ public class Parser {
             }
             break;
           case accept:
-            finish = true;
-            break;
+//            finish = true;
+            break loop;
         }
         Log.print("");
 
