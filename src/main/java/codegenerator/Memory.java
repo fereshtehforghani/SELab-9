@@ -10,15 +10,13 @@ public class Memory {
     private static List<_3AddressCode> codeBlock;
     private static int lastTempIndex;
     private static int lastDataAddress;
-    private static final int stratTempMemoryAddress = 500;
-    private static final int stratDataMemoryAddress = 200;
     private final int dataSize = 4;
     private final int tempSize = 4;
 
     public static Memory create(){
         codeBlock = new ArrayList<_3AddressCode>();
-        lastTempIndex = stratTempMemoryAddress;
-        lastDataAddress = stratDataMemoryAddress;
+        lastTempIndex = 500;
+        lastDataAddress = 200;
         return new Memory();
     }
     public void addLastTemp(){lastTempIndex += tempSize;}
